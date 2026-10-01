@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#08090d" />
+  <meta name="description" content="Revenda UNI TV com atendimento rápido para conhecer planos, compatibilidade e formas de acesso." />
+  <title>UNI TV | Revenda</title>
+  <style>
+    :root{
+      --bg:#08090d;--panel:#10131a;--panel2:#151923;--text:#f7f8fb;--muted:#aeb5c3;
+      --line:rgba(255,255,255,.09);--accent:#7c5cff;--accent2:#21d4fd;--ok:#33d17a;
+      --shadow:0 28px 80px rgba(0,0,0,.42);--radius:24px
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:
+      radial-gradient(circle at 78% 5%,rgba(124,92,255,.16),transparent 30%),
+      radial-gradient(circle at 18% 22%,rgba(33,212,253,.08),transparent 27%),var(--bg);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1160px,calc(100% - 36px));margin:auto}
+    header{position:sticky;top:0;z-index:20;backdrop-filter:blur(18px);background:rgba(8,9,13,.72);border-bottom:1px solid var(--line)}
+    nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.04em;font-size:1.2rem}
+    .brandmark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;box-shadow:0 12px 32px rgba(124,92,255,.3)}
+    .navlinks{display:flex;gap:24px;color:var(--muted);font-size:.95rem}
+    .navlinks a:hover{color:white}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;border-radius:14px;border:1px solid transparent;font-weight:800;transition:.2s ease;cursor:pointer}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),#5d8cff);box-shadow:0 14px 34px rgba(124,92,255,.26)}
+    .btn.primary:hover{transform:translateY(-2px);filter:brightness(1.06)}
+    .btn.ghost{border-color:var(--line);background:rgba(255,255,255,.03)}
+    .hero{padding:86px 0 72px}
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center}
+    .eyebrow{display:inline-flex;gap:9px;align-items:center;padding:8px 12px;border:1px solid rgba(124,92,255,.28);background:rgba(124,92,255,.08);border-radius:999px;color:#dcd5ff;font-weight:700;font-size:.82rem}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 6px rgba(51,209,122,.1)}
+    h1{font-size:clamp(3rem,7vw,6.25rem);line-height:.92;letter-spacing:-.07em;margin:24px 0 22px;max-width:760px}
+    .grad{background:linear-gradient(90deg,#fff 8%,#a99cff 52%,#6be7ff);-webkit-background-clip:text;color:transparent}
+    .lead{font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.65;color:var(--muted);max-width:680px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .micro{margin-top:18px;color:#7f8796;font-size:.86rem}
+    .showcase{position:relative;min-height:520px}
+    .orb{position:absolute;inset:40px;background:linear-gradient(135deg,rgba(124,92,255,.28),rgba(33,212,253,.1));filter:blur(50px);border-radius:50%}
+    .screen{position:absolute;inset:35px 0 0 35px;border-radius:34px;padding:18px;background:linear-gradient(155deg,#202636,#0e1118);border:1px solid rgba(255,255,255,.11);box-shadow:var(--shadow);transform:rotate(2.5deg)}
+    .screen:before{content:"";position:absolute;inset:10px;border-radius:26px;border:1px solid rgba(255,255,255,.05);pointer-events:none}
+    .topline{display:flex;align-items:center;justify-content:space-between;padding:10px}
+    .pill{height:9px;border-radius:999px;background:rgba(255,255,255,.12)}
+    .catalog{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:8px}
+    .poster{min-height:150px;border-radius:19px;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(255,255,255,.08);overflow:hidden;position:relative}
+    .poster:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.75));z-index:0}
+    .poster>*{position:relative;z-index:1}
+    .p1{background:linear-gradient(145deg,#6f2bff,#151324 70%)}
+    .p2{background:linear-gradient(145deg,#0cb9b4,#101b20 70%)}
+    .p3{background:linear-gradient(145deg,#f45d48,#211411 70%)}
+    .p4{background:linear-gradient(145deg,#dfb64b,#201b10 70%)}
+    .poster b{font-size:1.1rem}.poster span{font-size:.8rem;color:#d4d7de;margin-top:4px}
+    section{padding:82px 0}
+    .section-head{max-width:720px;margin-bottom:36px}
+    .kicker{color:#9f91ff;font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:.76rem}
+    h2{font-size:clamp(2rem,4vw,3.8rem);letter-spacing:-.055em;line-height:1.02;margin:12px 0}
+    .sub{color:var(--muted);line-height:1.7}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+    .icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(124,92,255,.12);border:1px solid rgba(124,92,255,.22);font-size:1.25rem}
+    .card h3{margin:20px 0 8px;font-size:1.15rem}.card p{margin:0;color:var(--muted);line-height:1.65}
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .plan{position:relative;padding:28px;border-radius:26px;background:var(--panel);border:1px solid var(--line)}
+    .plan.featured{background:linear-gradient(180deg,rgba(124,92,255,.13),rgba(16,19,26,.98));border-color:rgba(124,92,255,.4);transform:translateY(-8px)}
+    .badge{position:absolute;top:18px;right:18px;font-size:.75rem;font-weight:800;background:#fff;color:#111;padding:7px 10px;border-radius:999px}
+    .plan h3{font-size:1.3rem;margin:0 0 10px}.price{font-size:2.35rem;font-weight:900;letter-spacing:-.045em}.price small{font-size:.9rem;color:var(--muted);font-weight:600}
+    .features{list-style:none;padding:0;margin:22px 0 26px;display:grid;gap:12px;color:#d7dbe3}
+    .features li:before{content:"✓";color:var(--ok);font-weight:900;margin-right:10px}
+    .devicebar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .device{padding:20px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.025);text-align:center;color:#d9dde6;font-weight:700}
+    .faq{display:grid;gap:10px}
+    details{border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:18px;padding:20px 22px}
+    summary{cursor:pointer;font-weight:800}
+    details p{color:var(--muted);line-height:1.65;margin-bottom:0}
+    .cta{padding:40px;border-radius:32px;background:
+      radial-gradient(circle at 85% 0,rgba(33,212,253,.18),transparent 34%),
+      linear-gradient(135deg,rgba(124,92,255,.2),rgba(255,255,255,.035));border:1px solid rgba(124,92,255,.3);display:flex;justify-content:space-between;align-items:center;gap:24px}
+    footer{padding:30px 0 44px;color:#7f8796;font-size:.84rem;border-top:1px solid var(--line)}
+    .footergrid{display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap}
+    @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.showcase{min-height:430px}.grid3,.plans{grid-template-columns:1fr 1fr}.plan.featured{transform:none}.devicebar{grid-template-columns:1fr 1fr}.navlinks{display:none}}
+    @media(max-width:620px){.hero{padding-top:56px}.showcase{min-height:370px}.screen{inset:20px 0 0}.catalog{gap:8px}.poster{min-height:120px;padding:14px}.grid3,.plans{grid-template-columns:1fr}.cta{padding:28px;align-items:flex-start;flex-direction:column}h1{font-size:3.2rem}.btn{width:100%}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <a class="brand" href="#inicio"><span class="brandmark">▶</span><span>UNI TV <span style="color:#777f8e;font-weight:700">revenda</span></span></a>
+        <div class="navlinks">
+          <a href="#beneficios">Benefícios</a>
+          <a href="#planos">Planos</a>
+          <a href="#compatibilidade">Compatibilidade</a>
+          <a href="#faq">Dúvidas</a>
+        </div>
+        <a class="btn primary js-whatsapp" href="#contato">Falar agora</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow"><span class="dot"></span> Atendimento rápido e personalizado</span>
+          <h1>Seu entretenimento em <span class="grad">um só lugar.</span></h1>
+          <p class="lead">Conheça opções de acesso ao UNI TV com canais, filmes, séries e novidades, além de suporte para escolher o plano ideal e configurar seus dispositivos.</p>
+          <div class="actions">
+            <a class="btn primary js-whatsapp" href="#contato">Quero conhecer os planos →</a>
+            <a class="btn ghost" href="#beneficios">Ver como funciona</a>
+          </div>
+          <p class="micro">Revenda independente. Disponibilidade de conteúdo, recursos e compatibilidade pode variar conforme plano, região e versão do aplicativo.</p>
+        </div>
+        <div class="showcase" aria-hidden="true">
+          <div class="orb"></div>
+          <div class="screen">
+            <div class="topline"><div class="pill" style="width:92px"></div><div class="pill" style="width:44px"></div></div>
+            <div class="catalog">
+              <div class="poster p1"><b>Filmes</b><span>Grandes histórias para assistir</span></div>
+              <div class="poster p2"><b>Séries</b><span>Temporadas para maratonar</span></div>
+              <div class="poster p3"><b>Canais</b><span>Programação para diferentes gostos</span></div>
+              <div class="poster p4"><b>Novidades</b><span>Conteúdos em destaque</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="beneficios">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Experiência simples</span>
+          <h2>Mais praticidade para assistir o que você gosta.</h2>
+          <p class="sub">Uma apresentação clara para o cliente entender os principais diferenciais antes de escolher o plano.</p>
+        </div>
+        <div class="grid3">
+          <article class="card"><div class="icon">◉</div><h3>Conteúdo variado</h3><p>Opções de canais, filmes, séries e novidades reunidas em uma experiência de navegação simples.</p></article>
+          <article class="card"><div class="icon">▣</div><h3>Vários dispositivos</h3><p>Consulte a compatibilidade do aplicativo com Smart TVs, TV Box, celulares e outros aparelhos suportados.</p></article>
+          <article class="card"><div class="icon">✦</div><h3>Atendimento humano</h3><p>Ajuda para escolher a melhor opção, orientar a instalação e esclarecer dúvidas sobre o acesso.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="planos">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Planos</span>
+          <h2>Escolha a opção que combina com você.</h2>
+          <p class="sub">Valores abaixo são exemplos de layout. Substitua pelos preços e condições comerciais reais da sua revenda.</p>
+        </div>
+        <div class="plans">
+          <article class="plan">
+            <h3>Mensal</h3><div class="price">R$ --<small>/mês</small></div>
+            <ul class="features"><li>Acesso por 30 dias</li><li>Suporte de ativação</li><li>Orientação de instalação</li></ul>
+            <a class="btn ghost js-whatsapp" href="#contato">Consultar valor</a>
+          </article>
+          <article class="plan featured">
+            <span class="badge">Mais procurado</span><h3>Trimestral</h3><div class="price">R$ --<small>/3 meses</small></div>
+            <ul class="features"><li>Acesso por 90 dias</li><li>Suporte de ativação</li><li>Condição especial</li></ul>
+            <a class="btn primary js-whatsapp" href="#contato">Quero esse plano</a>
+          </article>
+          <article class="plan">
+            <h3>Anual</h3><div class="price">R$ --<small>/ano</small></div>
+            <ul class="features"><li>Acesso por 12 meses</li><li>Suporte de ativação</li><li>Melhor custo no período</li></ul>
+            <a class="btn ghost js-whatsapp" href="#contato">Consultar valor</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="compatibilidade">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Compatibilidade</span>
+          <h2>Assista nos seus dispositivos favoritos.</h2>
+          <p class="sub">A compatibilidade exata depende da versão do aplicativo e do aparelho. Confirme antes da compra.</p>
+        </div>
+        <div class="devicebar">
+          <div class="device">Smart TV</div><div class="device">TV Box</div><div class="device">Android</div><div class="device">Outros suportados</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <div class="section-head"><span class="kicker">Dúvidas frequentes</span><h2>Antes de contratar.</h2></div>
+        <div class="faq">
+          <details><summary>Como faço para contratar?</summary><p>Fale com o atendimento, escolha a opção disponível e siga as instruções de ativação fornecidas pela revenda.</p></details>
+          <details><summary>Em quais aparelhos funciona?</summary><p>Os aparelhos compatíveis podem variar. Informe o modelo do seu dispositivo ao atendimento para confirmar a disponibilidade.</p></details>
+          <details><summary>O catálogo é sempre o mesmo?</summary><p>Não necessariamente. Catálogo, canais, recursos e disponibilidade podem mudar conforme o serviço e o plano contratado.</p></details>
+          <details><summary>Este é o site oficial da UNI TV?</summary><p>Não. Esta página representa uma revenda independente e não deve ser confundida com o site oficial da marca ou do aplicativo.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="wrap">
+        <div class="cta">
+          <div><span class="kicker">Atendimento</span><h2 style="margin-bottom:8px">Pronto para conhecer os planos?</h2><p class="sub" style="margin:0">Chame no WhatsApp e tire suas dúvidas antes de contratar.</p></div>
+          <a class="btn primary js-whatsapp" href="#">Chamar no WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footergrid">
+      <span>© <span id="year"></span> Revenda UNI TV. Todos os direitos reservados.</span>
+      <span>Use somente serviços e conteúdos devidamente licenciados. Consulte termos e condições do fornecedor.</span>
+    </div>
+  </footer>
+
+  <script>
+    const WHATSAPP_NUMBER = "5500000000000"; // Troque pelo número com DDI + DDD + número. Ex.: 5553999999999
+    const MESSAGE = "Olá! Quero saber mais sobre os planos da UNI TV.";
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.querySelectorAll(".js-whatsapp").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (WHATSAPP_NUMBER === "5500000000000") {
+          alert("Configure o número de WhatsApp no arquivo index.html para ativar este botão.");
+          return;
+        }
+        window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(MESSAGE), "_blank", "noopener,noreferrer");
+      });
+    });
+  </script>
+</body>
+</html>
