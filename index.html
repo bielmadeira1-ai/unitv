@@ -2,97 +2,168 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#09090b">
-  <meta name="description" content="UniTV: entretenimento com canais, filmes, séries e novidades. Conheça os planos e fale com nosso atendimento pelo WhatsApp.">
-  <title>UniTV | Seu entretenimento, do seu jeito</title>
+  <meta name="description" content="UniTV: canais, filmes, séries e novidades. Conheça os planos e fale com nosso atendimento pelo WhatsApp.">
+  <meta name="format-detection" content="telephone=no">
+  <title>UniTV | Entretenimento do seu jeito</title>
   <style>
     :root{
-      --bg:#09090b;--bg2:#0d0e12;--panel:#111319;--panel2:#171a22;
-      --text:#f7f7f8;--muted:#a6a9b2;--line:rgba(255,255,255,.09);
-      --orange:#ff9b2f;--red:#ef343c;--violet:#6c4fd5;--blue:#1057b8;
-      --green:#20d678;--shadow:0 30px 90px rgba(0,0,0,.46);
+      --bg:#09090b;--panel:#111319;--panel2:#171a22;--text:#f7f7f8;--muted:#a6a9b2;
+      --line:rgba(255,255,255,.09);--orange:#ff9b2f;--red:#ef343c;--violet:#6c4fd5;
+      --blue:#1057b8;--green:#25d366;--shadow:0 30px 90px rgba(0,0,0,.46);
+      --grad:linear-gradient(135deg,#ff9d32 0%,#ef343c 46%,#6256d8 100%);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;color:var(--text);background:
       radial-gradient(850px 520px at 78% -10%,rgba(48,82,194,.20),transparent 62%),
-      radial-gradient(720px 520px at 9% 12%,rgba(239,52,60,.12),transparent 60%),
-      var(--bg);
+      radial-gradient(720px 520px at 9% 12%,rgba(239,52,60,.12),transparent 60%),var(--bg);
       font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      overflow-x:hidden
+      overflow-x:hidden;-webkit-font-smoothing:antialiased
     }
     a{color:inherit;text-decoration:none}
-    button{font:inherit}
+    button{font:inherit;color:inherit}
+    img,svg{display:block}
+    ::selection{background:rgba(239,52,60,.36);color:#fff}
     .wrap{width:min(1180px,calc(100% - 38px));margin:auto}
     .nav{
       position:sticky;top:0;z-index:60;border-bottom:1px solid rgba(255,255,255,.065);
-      background:rgba(9,9,11,.72);backdrop-filter:blur(18px)
+      background:rgba(9,9,11,.78);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)
     }
     .navin{height:76px;display:flex;align-items:center;justify-content:space-between;gap:28px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:950;letter-spacing:-.045em;font-size:1.28rem}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:950;letter-spacing:-.045em;font-size:1.28rem;flex-shrink:0}
     .mark{position:relative;width:42px;height:42px;border-radius:50%;border:4px solid transparent;
       background:linear-gradient(var(--bg),var(--bg)) padding-box,
       linear-gradient(145deg,var(--orange),var(--red),var(--violet),var(--blue)) border-box}
     .mark:before{content:"";position:absolute;left:13px;top:8px;width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:14px solid var(--orange);filter:drop-shadow(8px 6px 0 #6d4fc6)}
-    .brand b{font-size:1.35rem}.brand i{font-style:normal;font-weight:750;color:#878b95;font-size:.8rem;margin-left:5px}
-    .links{display:flex;gap:25px;color:#bbbfc8;font-size:.92rem}
+    .brand b{font-size:1.37rem}
+    .links{display:flex;align-items:center;gap:25px;color:#bbbfc8;font-size:.92rem}
     .links a{transition:.2s}.links a:hover{color:#fff}
-    .btn{display:inline-flex;justify-content:center;align-items:center;gap:10px;border-radius:14px;padding:14px 19px;font-weight:850;border:1px solid transparent;transition:.22s ease;cursor:pointer}
+    .mobile-cta{display:none}
+    .menu{display:none;width:44px;height:44px;border-radius:13px;border:1px solid var(--line);background:rgba(255,255,255,.04);padding:0;place-items:center;cursor:pointer}
+    .menu span,.menu span:before,.menu span:after{display:block;width:18px;height:1.5px;background:#fff;border-radius:3px;position:relative;transition:.2s}
+    .menu span:before,.menu span:after{content:"";position:absolute;left:0}.menu span:before{top:-6px}.menu span:after{top:6px}
+    .menu[aria-expanded="true"] span{background:transparent}.menu[aria-expanded="true"] span:before{top:0;transform:rotate(45deg)}.menu[aria-expanded="true"] span:after{top:0;transform:rotate(-45deg)}
+
+    .btn{
+      min-height:50px;display:inline-flex;justify-content:center;align-items:center;gap:10px;border-radius:14px;
+      padding:13px 20px;font-weight:850;border:1px solid transparent;transition:transform .22s ease,box-shadow .22s ease,filter .22s ease,background .22s ease,border-color .22s ease;
+      cursor:pointer;line-height:1.1;white-space:nowrap
+    }
     .btn:hover{transform:translateY(-2px)}
-    .btn-primary{background:linear-gradient(135deg,#ff9d32 0%,#ef343c 46%,#6256d8 100%);box-shadow:0 16px 42px rgba(239,52,60,.20)}
-    .btn-ghost{border-color:var(--line);background:rgba(255,255,255,.035)}
+    .btn:active{transform:translateY(0)}
+    .btn:focus-visible,.menu:focus-visible,.whats:focus-visible,a:focus-visible{outline:3px solid rgba(100,145,255,.7);outline-offset:3px}
+    .btn-primary{background:var(--grad);box-shadow:0 16px 42px rgba(239,52,60,.20)}
+    .btn-primary:hover{filter:brightness(1.08);box-shadow:0 18px 48px rgba(239,52,60,.27)}
+    .btn-ghost{border-color:rgba(255,255,255,.13);background:rgba(255,255,255,.045)}
+    .btn-ghost:hover{background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.21)}
+    .btn svg{width:18px;height:18px;flex:0 0 auto}
+
     .hero{padding:92px 0 72px;position:relative}
     .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:58px;align-items:center}
     .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.035);font-size:.79rem;font-weight:800;color:#d7d8de}
-    .live{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 0 6px rgba(32,214,120,.11)}
+    .live{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 0 6px rgba(37,211,102,.11)}
     h1{font-size:clamp(3.35rem,7.5vw,7rem);line-height:.88;letter-spacing:-.075em;margin:24px 0 25px;max-width:760px}
-    .accent{background:linear-gradient(90deg,#fff 5%,#ffbd65 28%,#f44d52 53%,#8c63e8 75%,#66a3ff);-webkit-background-clip:text;color:transparent}
+    .accent{background:linear-gradient(90deg,#fff 5%,#ffbd65 28%,#f44d52 53%,#8c63e8 75%,#66a3ff);-webkit-background-clip:text;background-clip:text;color:transparent}
     .lead{font-size:clamp(1.04rem,1.8vw,1.28rem);line-height:1.72;color:var(--muted);max-width:660px}
     .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
     .trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px;color:#8f939d;font-size:.81rem}
-    .trust span{display:flex;align-items:center;gap:7px}.trust span:before{content:"✓";color:var(--green);font-weight:900}
+    .trust span{display:flex;align-items:center;gap:7px}.trust span:before{content:"✓";color:#52e58e;font-weight:900}
+
     .device{position:relative;min-height:540px;display:grid;place-items:center}
     .glow{position:absolute;width:460px;height:460px;border-radius:50%;background:conic-gradient(from 180deg,rgba(255,155,47,.25),rgba(239,52,60,.22),rgba(108,79,213,.26),rgba(16,87,184,.25),rgba(255,155,47,.25));filter:blur(58px);opacity:.8}
     .tv{width:min(520px,100%);aspect-ratio:1.28;background:linear-gradient(145deg,#222631,#0e1015 58%);border:1px solid rgba(255,255,255,.12);border-radius:32px;padding:14px;box-shadow:var(--shadow);position:relative;transform:perspective(1100px) rotateY(-7deg) rotateX(2deg)}
     .tv:after{content:"";position:absolute;left:36%;right:36%;height:30px;bottom:-28px;background:#11131a;border-radius:0 0 12px 12px}
-    .screen{height:100%;border-radius:23px;background:
-      radial-gradient(circle at 80% 15%,rgba(98,86,216,.32),transparent 35%),
-      linear-gradient(145deg,#11131b,#0a0b0f);padding:20px;overflow:hidden}
-    .screenhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.tinybrand{font-size:.75rem;font-weight:950}.dots{display:flex;gap:5px}.dots i{width:5px;height:5px;background:#707480;border-radius:50%}
+    .screen{height:100%;border-radius:23px;background:radial-gradient(circle at 80% 15%,rgba(98,86,216,.32),transparent 35%),linear-gradient(145deg,#11131b,#0a0b0f);padding:20px;overflow:hidden}
+    .screenhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+    .tinybrand{font-size:.75rem;font-weight:950}.dots{display:flex;gap:5px}.dots i{width:5px;height:5px;background:#707480;border-radius:50%}
     .feature{height:145px;border-radius:19px;background:linear-gradient(120deg,#ef343c,#6d4fd5 62%,#124fa4);padding:24px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
     .feature:before{content:"";position:absolute;width:190px;height:190px;border:32px solid rgba(255,255,255,.09);border-radius:50%;right:-30px;top:-80px}
     .feature b{font-size:1.6rem;letter-spacing:-.04em}.feature small{opacity:.78;margin-top:4px}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:11px}.poster{height:105px;border-radius:15px;border:1px solid rgba(255,255,255,.08);padding:12px;display:flex;align-items:flex-end;font-size:.78rem;font-weight:850}.p1{background:linear-gradient(145deg,#2c3447,#11131a)}.p2{background:linear-gradient(145deg,#61344b,#151116)}.p3{background:linear-gradient(145deg,#2a4d4c,#101516)}
-    .float{position:absolute;right:-18px;bottom:78px;background:rgba(18,20,27,.92);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(15px);padding:14px 16px;border-radius:17px;box-shadow:var(--shadow);font-size:.84rem}.float b{display:block;font-size:1rem;margin-bottom:3px}.float span{color:#959aa6}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:11px}
+    .poster{height:105px;border-radius:15px;border:1px solid rgba(255,255,255,.08);padding:12px;display:flex;align-items:flex-end;font-size:.78rem;font-weight:850}
+    .p1{background:linear-gradient(145deg,#2c3447,#11131a)}.p2{background:linear-gradient(145deg,#61344b,#151116)}.p3{background:linear-gradient(145deg,#2a4d4c,#101516)}
+    .float{position:absolute;right:-18px;bottom:78px;background:rgba(18,20,27,.92);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(15px);padding:14px 16px;border-radius:17px;box-shadow:var(--shadow);font-size:.84rem}
+    .float b{display:block;font-size:1rem;margin-bottom:3px}.float span{color:#959aa6}
+
     .ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:rgba(255,255,255,.018)}
-    .ticker-track{display:flex;width:max-content;animation:marquee 24s linear infinite}.ticker span{padding:16px 30px;color:#9da1aa;font-size:.82rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.ticker span:after{content:"•";margin-left:30px;color:#ef565c}@keyframes marquee{to{transform:translateX(-50%)}}
-    section{padding:92px 0}.head{max-width:760px;margin-bottom:38px}.kicker{font-size:.73rem;font-weight:950;letter-spacing:.16em;text-transform:uppercase;color:#ef6e72}.head h2{font-size:clamp(2.25rem,5vw,4.45rem);line-height:.98;letter-spacing:-.06em;margin:11px 0 15px}.head p{margin:0;color:var(--muted);line-height:1.72;font-size:1.03rem}
-    .features{display:grid;grid-template-columns:repeat(12,1fr);gap:15px}.box{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.024));border-radius:25px;padding:27px;min-height:245px;position:relative;overflow:hidden}.box:nth-child(1){grid-column:span 7}.box:nth-child(2){grid-column:span 5}.box:nth-child(3){grid-column:span 5}.box:nth-child(4){grid-column:span 7}.ic{width:45px;height:45px;display:grid;place-items:center;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);font-size:1.1rem}.box h3{margin:26px 0 9px;font-size:1.45rem;letter-spacing:-.035em}.box p{color:var(--muted);line-height:1.65;max-width:520px;margin:0}.box .num{position:absolute;right:20px;top:12px;font-size:5.2rem;font-weight:950;color:rgba(255,255,255,.027);letter-spacing:-.08em}
-    .plan-wrap{background:linear-gradient(180deg,transparent,rgba(108,79,213,.05),transparent)}.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;align-items:stretch}.plan{border:1px solid var(--line);background:#101218;border-radius:27px;padding:27px;position:relative}.plan.hot{background:linear-gradient(180deg,rgba(109,79,213,.16),rgba(16,18,24,.98));border-color:rgba(140,99,232,.42);transform:translateY(-8px);box-shadow:0 25px 70px rgba(70,45,160,.18)}.tag{position:absolute;right:18px;top:18px;background:#fff;color:#111217;border-radius:999px;padding:7px 10px;font-size:.7rem;font-weight:950}.plan h3{font-size:1.16rem;margin:0 0 9px}.price{font-size:2.55rem;font-weight:950;letter-spacing:-.055em}.price small{font-size:.8rem;color:#9398a4;font-weight:700;letter-spacing:0}.economy{height:24px;margin-top:7px;color:#55e497;font-size:.8rem;font-weight:850}.list{list-style:none;padding:0;margin:23px 0 26px;display:grid;gap:12px;color:#d5d8df;font-size:.93rem}.list li:before{content:"✓";color:#44de8a;font-weight:900;margin-right:9px}.plan .btn{width:100%}.note{text-align:center;color:#747985;font-size:.77rem;margin-top:18px}
+    .ticker-track{display:flex;width:max-content;animation:marquee 24s linear infinite}
+    .ticker span{padding:16px 30px;color:#9da1aa;font-size:.82rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .ticker span:after{content:"•";margin-left:30px;color:#ef565c}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+
+    section{padding:92px 0}
+    .head{max-width:760px;margin-bottom:38px}
+    .kicker{font-size:.73rem;font-weight:950;letter-spacing:.16em;text-transform:uppercase;color:#ef6e72}
+    .head h2{font-size:clamp(2.25rem,5vw,4.45rem);line-height:.98;letter-spacing:-.06em;margin:11px 0 15px}
+    .head p{margin:0;color:var(--muted);line-height:1.72;font-size:1.03rem}
+
+    .features{display:grid;grid-template-columns:repeat(12,1fr);gap:15px}
+    .box{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.024));border-radius:25px;padding:27px;min-height:245px;position:relative;overflow:hidden;transition:transform .25s,border-color .25s,background .25s}
+    .box:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.16);background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.03))}
+    .box:nth-child(1){grid-column:span 7}.box:nth-child(2){grid-column:span 5}.box:nth-child(3){grid-column:span 5}.box:nth-child(4){grid-column:span 7}
+    .ic{width:45px;height:45px;display:grid;place-items:center;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);font-size:1.1rem}
+    .box h3{margin:26px 0 9px;font-size:1.45rem;letter-spacing:-.035em}.box p{color:var(--muted);line-height:1.65;max-width:520px;margin:0}.box .num{position:absolute;right:20px;top:12px;font-size:5.2rem;font-weight:950;color:rgba(255,255,255,.027);letter-spacing:-.08em}
+
+    .plan-wrap{background:linear-gradient(180deg,transparent,rgba(108,79,213,.05),transparent)}
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;align-items:stretch}
+    .plan{border:1px solid var(--line);background:#101218;border-radius:27px;padding:27px;position:relative;transition:transform .25s,border-color .25s,box-shadow .25s}
+    .plan:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.16)}
+    .plan.hot{background:linear-gradient(180deg,rgba(109,79,213,.16),rgba(16,18,24,.98));border-color:rgba(140,99,232,.42);transform:translateY(-8px);box-shadow:0 25px 70px rgba(70,45,160,.18)}
+    .plan.hot:hover{transform:translateY(-12px)}
+    .tag{position:absolute;right:18px;top:18px;background:#fff;color:#111217;border-radius:999px;padding:7px 10px;font-size:.7rem;font-weight:950}
+    .plan h3{font-size:1.16rem;margin:0 0 9px}.price{font-size:2.55rem;font-weight:950;letter-spacing:-.055em}.price small{font-size:.8rem;color:#9398a4;font-weight:700;letter-spacing:0}
+    .economy{min-height:24px;margin-top:7px;color:#55e497;font-size:.8rem;font-weight:850;line-height:1.4}
+    .list{list-style:none;padding:0;margin:23px 0 26px;display:grid;gap:12px;color:#d5d8df;font-size:.93rem}.list li:before{content:"✓";color:#44de8a;font-weight:900;margin-right:9px}
+    .plan .btn{width:100%}.note{text-align:center;color:#747985;font-size:.77rem;margin-top:18px}
+
     .stepgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.step{border-top:1px solid var(--line);padding:25px 3px}.step em{font-style:normal;color:#ee676b;font-weight:950}.step h3{font-size:1.25rem;margin:10px 0 8px}.step p{color:var(--muted);line-height:1.62;margin:0}
     .devices{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.dev{border:1px solid var(--line);border-radius:18px;padding:20px 16px;text-align:center;background:rgba(255,255,255,.025);font-weight:850;color:#d4d7de}.dev small{display:block;color:#777d88;font-weight:650;margin-top:5px}
-    .faq{display:grid;gap:10px}.faq details{border:1px solid var(--line);background:rgba(255,255,255,.025);padding:20px 22px;border-radius:18px}.faq summary{font-weight:850;cursor:pointer}.faq p{color:var(--muted);line-height:1.66;margin-bottom:0}
-    .cta{margin:30px 0 86px;padding:50px;border:1px solid rgba(255,255,255,.10);border-radius:32px;background:
-      radial-gradient(circle at 90% 0,rgba(17,87,184,.22),transparent 36%),
-      radial-gradient(circle at 14% 100%,rgba(239,52,60,.16),transparent 38%),
-      #101218;display:flex;justify-content:space-between;align-items:center;gap:30px;overflow:hidden}
+    .faq{display:grid;gap:10px}.faq details{border:1px solid var(--line);background:rgba(255,255,255,.025);padding:0 22px;border-radius:18px;transition:border-color .2s,background .2s}.faq details[open]{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.14)}
+    .faq summary{font-weight:850;cursor:pointer;list-style:none;padding:20px 36px 20px 0;position:relative}.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:1.3rem;color:#8e94a0}.faq details[open] summary:after{content:"−";color:#fff}.faq p{color:var(--muted);line-height:1.66;margin:0;padding:0 0 20px}
+    .cta{margin:30px 0 86px;padding:50px;border:1px solid rgba(255,255,255,.10);border-radius:32px;background:radial-gradient(circle at 90% 0,rgba(17,87,184,.22),transparent 36%),radial-gradient(circle at 14% 100%,rgba(239,52,60,.16),transparent 38%),#101218;display:flex;justify-content:space-between;align-items:center;gap:30px;overflow:hidden}
     .cta h2{font-size:clamp(2.2rem,4.6vw,4.2rem);letter-spacing:-.06em;line-height:.96;margin:8px 0 12px}.cta p{color:var(--muted);margin:0;max-width:640px;line-height:1.65}.cta .btn{white-space:nowrap}
-    .whats{position:fixed;right:22px;bottom:22px;z-index:50;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#20c96c;box-shadow:0 18px 50px rgba(32,201,108,.28);font-weight:950;font-size:1.35rem;border:4px solid rgba(255,255,255,.08)}
-    footer{border-top:1px solid var(--line);padding:30px 0 45px;color:#737985;font-size:.8rem}.foot{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}.legal{max-width:760px;line-height:1.6}
-    @media(max-width:920px){.hero-grid{grid-template-columns:1fr}.device{min-height:470px}.features .box{grid-column:span 12}.plans{grid-template-columns:1fr}.plan.hot{transform:none}.stepgrid{grid-template-columns:1fr}.devices{grid-template-columns:1fr 1fr}.links{display:none}}
-    @media(max-width:620px){.hero{padding-top:56px}.navin{height:68px}.nav .btn{display:none}h1{font-size:3.55rem}.device{min-height:390px}.tv{transform:none}.float{right:4px;bottom:18px}.cta{padding:30px;flex-direction:column;align-items:flex-start}.actions .btn{width:100%}.devices{grid-template-columns:1fr 1fr}.screen{padding:13px}.feature{height:125px}.cards{gap:7px}.poster{height:90px;padding:8px}}
+
+    .whats{
+      position:fixed;right:22px;bottom:22px;z-index:50;min-height:58px;padding:0 18px 0 16px;border-radius:999px;
+      display:flex;align-items:center;gap:10px;background:var(--green);color:#fff;box-shadow:0 18px 50px rgba(37,211,102,.28);
+      font-weight:900;border:1px solid rgba(255,255,255,.20);transition:transform .2s,filter .2s,box-shadow .2s
+    }
+    .whats:hover{transform:translateY(-3px) scale(1.01);filter:brightness(1.04);box-shadow:0 22px 58px rgba(37,211,102,.34)}
+    .whats svg{width:27px;height:27px}.whats span{font-size:.83rem}
+    footer{border-top:1px solid var(--line);padding:30px 0 45px;color:#737985;font-size:.8rem}.foot{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}.legal{max-width:760px;line-height:1.6}.phone-link{color:#9ca2ad}.phone-link:hover{color:#fff}
+
+    @media(max-width:920px){
+      .hero-grid{grid-template-columns:1fr}.device{min-height:470px}.features .box{grid-column:span 12}.plans{grid-template-columns:1fr}.plan.hot,.plan.hot:hover{transform:none}.stepgrid{grid-template-columns:1fr}.devices{grid-template-columns:1fr 1fr}
+      .menu{display:grid}.nav>.wrap{position:relative}.links{display:none;position:absolute;top:68px;left:19px;right:19px;flex-direction:column;align-items:stretch;gap:0;padding:10px;border:1px solid rgba(255,255,255,.11);border-radius:18px;background:rgba(15,16,21,.97);box-shadow:0 30px 70px rgba(0,0,0,.45)}
+      .links.open{display:flex}.links a{padding:13px 12px;border-radius:11px}.links a:hover{background:rgba(255,255,255,.05)}.mobile-cta{display:flex!important;margin-top:4px;background:var(--grad)!important;color:#fff!important;justify-content:center}.desktop-cta{display:none}
+    }
+    @media(max-width:620px){
+      .wrap{width:min(100% - 28px,1180px)}.hero{padding:54px 0 56px}.navin{height:68px}h1{font-size:3.5rem;line-height:.9}.lead{font-size:1rem}.device{min-height:390px}.tv{transform:none;border-radius:26px;padding:10px}.float{right:4px;bottom:18px}.cta{padding:30px;flex-direction:column;align-items:flex-start;margin-bottom:70px}.actions .btn{width:100%}.devices{grid-template-columns:1fr 1fr}.screen{padding:13px}.feature{height:125px}.cards{gap:7px}.poster{height:90px;padding:8px}.plan{padding:23px}.tag{position:static;display:inline-block;margin-bottom:16px}.price{font-size:2.3rem}.whats{width:58px;padding:0;justify-content:center;right:16px;bottom:16px}.whats span{display:none}.whats svg{width:29px;height:29px}.box{min-height:220px}.hero .trust{gap:10px 14px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker-track{animation:none}.btn,.box,.plan,.whats,.menu span,.menu span:before,.menu span:after{transition:none}}
   </style>
 </head>
 <body>
   <header class="nav">
     <div class="wrap navin">
-      <a class="brand" href="#inicio"><span class="mark"></span><span><b>UniTV</b><i>revenda</i></span></a>
-      <nav class="links" aria-label="Navegação principal">
-        <a href="#vantagens">Vantagens</a><a href="#planos">Planos</a><a href="#como-funciona">Como funciona</a><a href="#duvidas">Dúvidas</a>
+      <a class="brand" href="#inicio" aria-label="UniTV - início"><span class="mark" aria-hidden="true"></span><span><b>UniTV</b></span></a>
+
+      <nav class="links" id="mainMenu" aria-label="Navegação principal">
+        <a href="#vantagens">Vantagens</a>
+        <a href="#planos">Planos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#duvidas">Dúvidas</a>
+        <a class="mobile-cta wa" data-message="Olá! Quero contratar a UniTV. Pode me passar as opções?" href="#">Falar no WhatsApp</a>
       </nav>
-      <a class="btn btn-primary wa" href="#">Falar no WhatsApp</a>
+
+      <a class="btn btn-primary wa desktop-cta" data-message="Olá! Quero contratar a UniTV. Pode me passar as opções?" href="#">
+        Falar no WhatsApp
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="menu" id="menuButton" aria-label="Abrir menu" aria-controls="mainMenu" aria-expanded="false"><span></span></button>
     </div>
   </header>
 
@@ -104,11 +175,15 @@
           <h1>Entretenimento que <span class="accent">acompanha você.</span></h1>
           <p class="lead">Canais, filmes, séries e novidades em uma experiência simples. Escolha seu plano, fale com nosso atendimento e receba orientação para começar.</p>
           <div class="actions">
-            <a class="btn btn-primary wa" href="#">Quero assinar agora →</a>
+            <a class="btn btn-primary wa" data-message="Olá! Quero contratar a UniTV. Pode me passar as opções?" href="#">
+              Quero assinar agora
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
             <a class="btn btn-ghost" href="#planos">Ver planos</a>
           </div>
-          <div class="trust"><span>Atendimento humano</span><span>Ativação orientada</span><span>Compra rápida</span></div>
+          <div class="trust"><span>Atendimento humano</span><span>Ativação orientada</span><span>Contato rápido</span></div>
         </div>
+
         <div class="device" aria-hidden="true">
           <div class="glow"></div>
           <div class="tv">
@@ -132,34 +207,52 @@
 
     <section id="vantagens">
       <div class="wrap">
-        <div class="head"><div class="kicker">Por que escolher</div><h2>Feito para ser simples desde o primeiro contato.</h2><p>Sem excesso de informação e sem processo complicado. Você fala com a gente, entende as opções e recebe orientação para começar.</p></div>
+        <div class="head"><div class="kicker">Por que escolher</div><h2>Feito para ser simples desde o primeiro contato.</h2><p>Você fala com a gente, entende as opções e recebe orientação para começar sem complicação.</p></div>
         <div class="features">
-          <article class="box"><span class="num">01</span><div class="ic">▶</div><h3>Conteúdo para diferentes momentos</h3><p>Tenha acesso a opções de canais, filmes, séries e conteúdos em destaque, conforme disponibilidade do serviço e do plano escolhido.</p></article>
+          <article class="box"><span class="num">01</span><div class="ic">▶</div><h3>Conteúdo para diferentes momentos</h3><p>Opções de canais, filmes, séries e conteúdos em destaque, conforme disponibilidade do serviço e do plano escolhido.</p></article>
           <article class="box"><span class="num">02</span><div class="ic">✦</div><h3>Atendimento de verdade</h3><p>Você fala com uma pessoa, tira suas dúvidas e recebe orientação para contratar e ativar.</p></article>
           <article class="box"><span class="num">03</span><div class="ic">⌁</div><h3>Assista onde for compatível</h3><p>Consulte a compatibilidade com Smart TV, TV Box, Android e outros dispositivos suportados.</p></article>
-          <article class="box"><span class="num">04</span><div class="ic">✓</div><h3>Compra sem enrolação</h3><p>Escolha o período que faz sentido para você e fale conosco pelo WhatsApp para confirmar preço, disponibilidade e ativação.</p></article>
+          <article class="box"><span class="num">04</span><div class="ic">✓</div><h3>Contratação sem enrolação</h3><p>Escolha o período que faz sentido para você e confirme preço, disponibilidade e ativação diretamente no WhatsApp.</p></article>
         </div>
       </div>
     </section>
 
     <section class="plan-wrap" id="planos">
       <div class="wrap">
-        <div class="head"><div class="kicker">Planos</div><h2>Escolha seu período.</h2><p>Uma apresentação comercial clara, com opções para quem quer testar, economizar no trimestre ou ter tranquilidade por mais tempo.</p></div>
+        <div class="head"><div class="kicker">Planos</div><h2>Escolha seu período.</h2><p>Três opções simples para apresentar ao cliente. Os valores abaixo são demonstrativos e podem ser ajustados depois.</p></div>
         <div class="plans">
           <article class="plan">
-            <h3>Mensal</h3><div class="price">R$ 34,90 <small>/ 30 dias</small></div><div class="economy">&nbsp;</div>
+            <h3>Mensal</h3>
+            <div class="price">R$ 34,90 <small>/ 30 dias</small></div>
+            <div class="economy">Ideal para começar</div>
             <ul class="list"><li>Acesso por 30 dias</li><li>Orientação de instalação</li><li>Suporte de ativação</li></ul>
-            <a class="btn btn-ghost wa" href="#">Escolher mensal</a>
+            <a class="btn btn-ghost wa" data-message="Olá! Quero contratar o plano Mensal da UniTV por R$ 34,90. Pode me orientar?" href="#">
+              Escolher mensal
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
           </article>
+
           <article class="plan hot">
-            <span class="tag">MAIS ESCOLHIDO</span><h3>Trimestral</h3><div class="price">R$ 89,90 <small>/ 90 dias</small></div><div class="economy">Melhor equilíbrio entre preço e período</div>
+            <span class="tag">MAIS ESCOLHIDO</span>
+            <h3>Trimestral</h3>
+            <div class="price">R$ 89,90 <small>/ 90 dias</small></div>
+            <div class="economy">Melhor equilíbrio entre preço e período</div>
             <ul class="list"><li>Acesso por 90 dias</li><li>Orientação de instalação</li><li>Suporte de ativação</li></ul>
-            <a class="btn btn-primary wa" href="#">Quero o trimestral</a>
+            <a class="btn btn-primary wa" data-message="Olá! Quero contratar o plano Trimestral da UniTV por R$ 89,90. Pode me orientar?" href="#">
+              Quero o trimestral
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
           </article>
+
           <article class="plan">
-            <h3>Anual</h3><div class="price">R$ 289,90 <small>/ 12 meses</small></div><div class="economy">Maior economia no período</div>
+            <h3>Anual</h3>
+            <div class="price">R$ 289,90 <small>/ 12 meses</small></div>
+            <div class="economy">Maior economia no período</div>
             <ul class="list"><li>Acesso por 12 meses</li><li>Orientação de instalação</li><li>Suporte de ativação</li></ul>
-            <a class="btn btn-ghost wa" href="#">Escolher anual</a>
+            <a class="btn btn-ghost wa" data-message="Olá! Quero contratar o plano Anual da UniTV por R$ 289,90. Pode me orientar?" href="#">
+              Escolher anual
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
           </article>
         </div>
         <div class="note">Valores ilustrativos para apresentação comercial. Confirme condições e valores vigentes no atendimento.</div>
@@ -180,7 +273,12 @@
     <section>
       <div class="wrap">
         <div class="head"><div class="kicker">Compatibilidade</div><h2>Na tela que combina com você.</h2><p>Consulte previamente o modelo do seu aparelho. A disponibilidade pode variar conforme dispositivo, sistema e versão do aplicativo.</p></div>
-        <div class="devices"><div class="dev">Smart TV<small>consulte modelos</small></div><div class="dev">TV Box<small>consulte compatibilidade</small></div><div class="dev">Android<small>consulte requisitos</small></div><div class="dev">Outros<small>fale com o atendimento</small></div></div>
+        <div class="devices">
+          <div class="dev">Smart TV<small>consulte modelos</small></div>
+          <div class="dev">TV Box<small>consulte compatibilidade</small></div>
+          <div class="dev">Android<small>consulte requisitos</small></div>
+          <div class="dev">Outros<small>fale com o atendimento</small></div>
+        </div>
       </div>
     </section>
 
@@ -199,26 +297,52 @@
     <div class="wrap">
       <section class="cta">
         <div><div class="kicker">Pronto para começar?</div><h2>Seu próximo conteúdo está a uma mensagem de distância.</h2><p>Fale com a equipe pelo WhatsApp e descubra a melhor opção para você.</p></div>
-        <a class="btn btn-primary wa" href="#">Chamar no WhatsApp →</a>
+        <a class="btn btn-primary wa" data-message="Olá! Quero contratar a UniTV. Pode me passar as opções?" href="#">
+          Chamar no WhatsApp
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </section>
     </div>
   </main>
 
-  <a class="whats wa" href="#" aria-label="Falar no WhatsApp">✆</a>
+  <a class="whats wa" data-message="Olá! Quero contratar a UniTV. Pode me passar as opções?" href="#" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+      <path d="M13.601 2.326A7.854 7.854 0 0 0 9.64.03C5.323.03 1.79 3.555 1.79 7.875c0 1.38.36 2.73 1.047 3.92L1.72 15.87l4.17-1.09a7.93 7.93 0 0 0 3.75.95h.003c4.318 0 7.85-3.525 7.85-7.846a7.82 7.82 0 0 0-2.298-5.556h-.002zm-3.96 12.08h-.003a6.56 6.56 0 0 1-3.35-.92l-.24-.144-2.476.648.66-2.413-.156-.248a6.56 6.56 0 0 1-1.007-3.455c0-3.612 2.942-6.55 6.575-6.55a6.52 6.52 0 0 1 4.66 1.931 6.49 6.49 0 0 1 1.92 4.64c-.002 3.612-2.944 6.55-6.583 6.55m3.587-4.922c-.196-.098-1.162-.573-1.342-.638-.18-.065-.31-.098-.441.098-.13.196-.507.638-.622.769-.114.13-.229.147-.425.049-.196-.098-.827-.305-1.576-.974-.583-.52-.976-1.161-1.09-1.357-.114-.196-.012-.302.086-.4.088-.087.196-.229.294-.343.098-.114.13-.196.196-.327.065-.13.033-.245-.016-.343-.049-.098-.441-1.064-.605-1.456-.159-.382-.32-.33-.441-.336l-.376-.007a.72.72 0 0 0-.523.245c-.18.196-.687.671-.687 1.637s.703 1.899.8 2.03c.098.13 1.383 2.11 3.35 2.958.468.202.833.323 1.118.413.47.149.898.128 1.236.078.377-.056 1.162-.475 1.326-.933.163-.458.163-.85.114-.933-.049-.082-.18-.13-.376-.228"/>
+    </svg>
+    <span>WhatsApp</span>
+  </a>
 
   <footer>
     <div class="wrap foot">
       <div class="legal">© <span id="year"></span> UniTV — Revenda independente. Use somente serviços e conteúdos devidamente licenciados. Disponibilidade, catálogo, recursos, preços e compatibilidade podem variar. Confirme as condições antes da contratação.</div>
-      <div>Atendimento: (53) 9200-25602</div>
+      <a class="phone-link wa" data-message="Olá! Quero contratar a UniTV. Pode me passar as opções?" href="#">Atendimento: (53) 9200-25602</a>
     </div>
   </footer>
 
   <script>
     const phone = "5553920025602";
-    const message = "Olá! Quero contratar a UniTV.";
-    const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-    document.querySelectorAll(".wa").forEach(a => { a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer"; });
+    const defaultMessage = "Olá! Quero contratar a UniTV.";
+    document.querySelectorAll(".wa").forEach((a) => {
+      const message = a.dataset.message || defaultMessage;
+      a.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+    });
+
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const menuButton = document.getElementById("menuButton");
+    const mainMenu = document.getElementById("mainMenu");
+    menuButton.addEventListener("click", () => {
+      const open = mainMenu.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(open));
+      menuButton.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    });
+    mainMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+      mainMenu.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Abrir menu");
+    }));
   </script>
 </body>
 </html>
