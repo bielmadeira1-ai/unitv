@@ -127,12 +127,12 @@
     .cta h2{font-size:clamp(2.2rem,4.6vw,4.2rem);letter-spacing:-.06em;line-height:.96;margin:8px 0 12px}.cta p{color:var(--muted);margin:0;max-width:640px;line-height:1.65}.cta .btn{white-space:nowrap}
 
     .whats{
-      position:fixed;right:22px;bottom:22px;z-index:50;min-height:58px;padding:0 18px 0 16px;border-radius:999px;
-      display:flex;align-items:center;gap:10px;background:var(--green);color:#fff;box-shadow:0 18px 50px rgba(37,211,102,.28);
-      font-weight:900;border:1px solid rgba(255,255,255,.20);transition:transform .2s,filter .2s,box-shadow .2s
+      position:fixed;right:22px;bottom:22px;z-index:50;width:64px;height:64px;padding:0;border-radius:50%;overflow:hidden;
+      display:grid;place-items:center;background:var(--green);color:#fff;box-shadow:0 18px 50px rgba(37,211,102,.28);
+      border:2px solid rgba(255,255,255,.18);transition:transform .2s,filter .2s,box-shadow .2s
     }
-    .whats:hover{transform:translateY(-3px) scale(1.01);filter:brightness(1.04);box-shadow:0 22px 58px rgba(37,211,102,.34)}
-    .whats svg{width:27px;height:27px}.whats span{font-size:.83rem}
+    .whats:hover{transform:translateY(-3px) scale(1.04);filter:brightness(1.04);box-shadow:0 22px 58px rgba(37,211,102,.34)}
+    .whats img{width:100%;height:100%;object-fit:cover;clip-path:circle(47% at 50% 50%);transform:scale(1.12)}
     footer{border-top:1px solid var(--line);padding:30px 0 45px;color:#737985;font-size:.8rem}.foot{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}.legal{max-width:760px;line-height:1.6}.phone-link{color:#9ca2ad}.phone-link:hover{color:#fff}
 
     @media(max-width:920px){
@@ -141,7 +141,7 @@
       .links.open{display:flex}.links a{padding:13px 12px;border-radius:11px}.links a:hover{background:rgba(255,255,255,.05)}.mobile-cta{display:flex!important;margin-top:4px;background:var(--grad)!important;color:#fff!important;justify-content:center}.desktop-cta{display:none}
     }
     @media(max-width:620px){
-      .wrap{width:min(100% - 28px,1180px)}.hero{padding:54px 0 56px}.navin{height:68px}h1{font-size:3.5rem;line-height:.9}.lead{font-size:1rem}.device{min-height:390px}.tv{transform:none;border-radius:26px;padding:10px}.float{right:4px;bottom:18px}.cta{padding:30px;flex-direction:column;align-items:flex-start;margin-bottom:70px}.actions .btn{width:100%}.devices{grid-template-columns:1fr 1fr}.screen{padding:13px}.feature{height:125px}.cards{gap:7px}.poster{height:90px;padding:8px}.plan{padding:23px}.tag{position:static;display:inline-block;margin-bottom:16px}.price{font-size:2.3rem}.whats{width:58px;padding:0;justify-content:center;right:16px;bottom:16px}.whats span{display:none}.whats svg{width:29px;height:29px}.box{min-height:220px}.hero .trust{gap:10px 14px}
+      .wrap{width:min(100% - 28px,1180px)}.hero{padding:54px 0 56px}.navin{height:68px}h1{font-size:3.5rem;line-height:.9}.lead{font-size:1rem}.device{min-height:390px}.tv{transform:none;border-radius:26px;padding:10px}.float{right:4px;bottom:18px}.cta{padding:30px;flex-direction:column;align-items:flex-start;margin-bottom:70px}.actions .btn{width:100%}.devices{grid-template-columns:1fr 1fr}.screen{padding:13px}.feature{height:125px}.cards{gap:7px}.poster{height:90px;padding:8px}.plan{padding:23px}.tag{position:static;display:inline-block;margin-bottom:16px}.price{font-size:2.3rem}.whats{width:58px;height:58px;right:16px;bottom:16px}.box{min-height:220px}.hero .trust{gap:10px 14px}
     }
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker-track{animation:none}.btn,.box,.plan,.whats,.menu span,.menu span:before,.menu span:after{transition:none}}
   </style>
@@ -306,10 +306,7 @@
   </main>
 
   <a class="whats wa" data-message="Olá! Quero contratar a UniTV. Pode me passar as opções?" href="#" aria-label="Falar no WhatsApp">
-    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-      <path d="M13.601 2.326A7.854 7.854 0 0 0 9.64.03C5.323.03 1.79 3.555 1.79 7.875c0 1.38.36 2.73 1.047 3.92L1.72 15.87l4.17-1.09a7.93 7.93 0 0 0 3.75.95h.003c4.318 0 7.85-3.525 7.85-7.846a7.82 7.82 0 0 0-2.298-5.556h-.002zm-3.96 12.08h-.003a6.56 6.56 0 0 1-3.35-.92l-.24-.144-2.476.648.66-2.413-.156-.248a6.56 6.56 0 0 1-1.007-3.455c0-3.612 2.942-6.55 6.575-6.55a6.52 6.52 0 0 1 4.66 1.931 6.49 6.49 0 0 1 1.92 4.64c-.002 3.612-2.944 6.55-6.583 6.55m3.587-4.922c-.196-.098-1.162-.573-1.342-.638-.18-.065-.31-.098-.441.098-.13.196-.507.638-.622.769-.114.13-.229.147-.425.049-.196-.098-.827-.305-1.576-.974-.583-.52-.976-1.161-1.09-1.357-.114-.196-.012-.302.086-.4.088-.087.196-.229.294-.343.098-.114.13-.196.196-.327.065-.13.033-.245-.016-.343-.049-.098-.441-1.064-.605-1.456-.159-.382-.32-.33-.441-.336l-.376-.007a.72.72 0 0 0-.523.245c-.18.196-.687.671-.687 1.637s.703 1.899.8 2.03c.098.13 1.383 2.11 3.35 2.958.468.202.833.323 1.118.413.47.149.898.128 1.236.078.377-.056 1.162-.475 1.326-.933.163-.458.163-.85.114-.933-.049-.082-.18-.13-.376-.228"/>
-    </svg>
-    <span>WhatsApp</span>
+    <img src="assets/whatsapp-logo.jpg" alt="" aria-hidden="true">
   </a>
 
   <footer>
